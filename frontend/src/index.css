@@ -1,4 +1,17 @@
 html {
-  /* Set the default zoom level to 90% */
-  zoom: 90%;
+  font-size: 90%; /* scales the UI similar to zoom */
+}
+
+/* Add this to ensure proper modal behavior */
+body {
+  position: relative;
+}
+
+/* Force modal z-index */
+.chakra-modal__overlay {
+  z-index: 1400 !important;
+}
+
+.chakra-modal__content-container {
+  z-index: 1401 !important;
 }
