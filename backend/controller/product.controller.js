@@ -6,7 +6,7 @@ export const getProducts = async (req, res) => {
     const products = await Product.find({});
     res.status(200).json({ success: true, data: products });
   } catch (e) {
-    console.log("Error in fetching products", e.message);
+    console.log("Error in fetching products-backend", e.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
