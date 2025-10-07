@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 export const useProductStore = create((set) => ({
   products: [],
+  isLoading: true,
   setProducts: (products) => set({ products }),
   createProduct: async (newProduct) => {
     if (!newProduct.name || !newProduct.price || !newProduct.image) {
@@ -24,12 +25,15 @@ export const useProductStore = create((set) => ({
     }
   },
   fetchProducts: async () => {
+    set({ isLoading: true });
     try {
       const res = await fetch("/api/products");
       const data = await res.json();
-      set({ products: data.data });
+      set({ products: data.data, isLoading: false });
+      return data;
     } catch (e) {
       console.log("Error fetching products-frontend", e.message);
+      set({ isLoading: false });
     }
   },
   deleteProduct: async (pid) => {
